@@ -18,21 +18,7 @@ namespace AWS_Service.Controllers
                     EmpName="Chandradev",
                     EmpAddress="Bnaglore",
                      Country="India"
-                },
-                 new Emp()
-                {
-                    Id=101,
-                    EmpName="Chandradev1",
-                    EmpAddress="Bnaglore1",
-                     Country="India1"
-                },
-                  new Emp()
-                {
-                    Id=102,
-                    EmpName="Chandradev2",
-                    EmpAddress="Bnaglore2",
-                     Country="India2"
-                }
+                }                
             };
             return emps;
         }

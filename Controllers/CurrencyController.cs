@@ -1,5 +1,4 @@
-﻿using AWS_Service.Model;
-using AWS_Service.Service;
+﻿using AWS_Service.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -18,9 +17,9 @@ namespace AWS_Service.Controllers
 
         // GET: api/<CurrencyController>
         [HttpGet]
-        public async Task<Root> Get()
+        public async Task<object> Get(string fsym, string tsyms)
         {
-            var result = await _currency.GetConveryValue();
+            var result = await _currency.GetConveryValue(fsym, tsyms);
             return result;
         }
     }

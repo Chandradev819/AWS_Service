@@ -1,8 +1,4 @@
-﻿using AWS_Service.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -15,10 +11,13 @@ namespace AWS_Service.Service
         {
             this.httpClient = httpClient;
         }
-        public async Task<Root> GetConveryValue() 
+        public async Task<object> GetConveryValue(string fsym, string tsyms)
         {
-            var result = await httpClient.GetFromJsonAsync<Root>("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD");
+            string apiURL = $"https://min-api.cryptocompare.com/data/price?fsym={fsym}&tsyms={tsyms}";
+            var result = await httpClient.GetFromJsonAsync<object>(apiURL);
             return result;
         }
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AWS_Service.Model;
 using AWS_Service.Service.Weather;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 
@@ -11,16 +12,19 @@ namespace AWS_Service.Controllers
     public class WeatherController : ControllerBase
     {
         private IWeather _weather;
-        public WeatherController(IWeather weather)
+        private IConfiguration config;
+        public WeatherController(IWeather weather, IConfiguration configuration)
         {
             _weather = weather;
+            config = configuration;
         }
         // GET: api/<CurrencyController>
         [HttpGet]
         public async Task<Root> Get(WeatherInput weatherInput)
         {
             var result = new Root();
-            if (weatherInput.APIKey == "1bb9bd6ec8fc1ef91dd15e0c456dc193erw567")
+            string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
+            if (weatherInput.APIKey == apiKey)
             {
                 result = await _weather.GetWeatherdata(weatherInput);
             }
@@ -31,8 +35,9 @@ namespace AWS_Service.Controllers
         [HttpPost("GetWeatherData")]
         public async Task<Root> GetWeatherData(WeatherInput weatherInput)
         {
+            string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
             var result = new Root();
-            if (weatherInput.APIKey == "1bb9bd6ec8fc1ef91dd15e0c456dc193erw567")
+            if (weatherInput.APIKey == apiKey)
             {
                 result = await _weather.GetWeatherdata(weatherInput);
             }

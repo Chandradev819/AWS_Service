@@ -23,11 +23,11 @@ namespace AWS_Service.Controllers
         public async Task<Root> Get(WeatherInput weatherInput)
         {
             var result = new Root();
-            string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
-            if (weatherInput.APIKey == apiKey)
-            {
+            //string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
+            //if (weatherInput.APIKey == apiKey)
+            //{
                 result = await _weather.GetWeatherdata(weatherInput);
-            }
+            //}
             return result;
         }
 
@@ -35,12 +35,12 @@ namespace AWS_Service.Controllers
         [HttpPost("GetWeatherData")]
         public async Task<Root> GetWeatherData(WeatherInput weatherInput)
         {
-            string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
+            //string apiKey = config.GetValue<string>("GlobalKeyValue:ApiKey");
             var result = new Root();
-            if (weatherInput.APIKey == apiKey)
-            {
+            //if (weatherInput.APIKey == apiKey)
+            //{
                 result = await _weather.GetWeatherdata(weatherInput);
-            }
+           // }
             return result;
 
         }
